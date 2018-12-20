@@ -1,0 +1,31 @@
+apiVersion: extensions/v1beta1
+kind: ReplicaSet
+metadata:
+  name: testpod
+spec:
+  replicas: 5
+  #via las labels el selector administra la cantidad de replicas
+  #MatchLabels es para que busque todos los pods con ese label (app)
+  selector:
+    matchLabels:
+      app: testpod
+  #templates es el del pod, para que sepa que si tiene que recrear uno sepa como es
+  template:
+    metadata:
+      name: testpod
+      #como el replicaset va a mirar el label para recrear, en el template tengo que especificar un label
+      labels:
+        app: testpod
+    spec:
+      containers:
+      - name: tempcont
+        image: ubuntu
+        command: ["/bin/bash"]
+        args: ["-c", "while true; do echo hello; sleep 10;done"]
+      #   volumeMounts:
+      #   - name: testvol
+      #     mountPath: /testvol
+      # volumes:
+      # - name: testvol
+      #   persistentVolumeClaim:
+      #     claimName: data
