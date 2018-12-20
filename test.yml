@@ -9,9 +9,12 @@ spec:
     command: ["/bin/bash"]
     args: ["-c", "while true; do echo hello; sleep 10;done"]
     volumeMounts:
+    #this name testvol is describe in the VOLUMES section
     - name: testvol
       mountPath: /testvol
   volumes:
+    #name is the describe under volumeMounts
   - name: testvol
+    #here comes the description of the volume previous instanced
     persistentVolumeClaim:
-      claimName: data 
+      claimName: data
