@@ -1,0 +1,17 @@
+# Request a persistent volume from the cluster using a Persistent Volume Claim.
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: data
+  namespace: igachef
+spec:
+  storageClassName: openebs-standard
+  #readWriteONCE is to only be used in 1 node
+  #this kind of volume if it is mount in more than
+  #one node it will crush
+  #The readwriteMANY is to be used in multiples nodes
+  #this could be used with gluster
+  accessModes: [ReadWriteOnce]
+  resources:
+    requests:
+      storage: 5Gi

@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: pod
+metadata:
+  name: chef-postgres
+  labels:
+    name: chef-postgres
+spec:
+  containers:
+    - image: docker.io/postgres:11.1-alpine
+      name: postgres
+      env:
+        - name: "postgres-password"
+          value: "example-password"
+      volumeMounts:
+        - name: data
+          mountPath: /var/lib/postgresql/data
+          subPath: data
