@@ -15,3 +15,7 @@ spec:
         - name: data
           mountPath: /var/lib/postgresql/data
           subPath: data
+      volume:
+        - name: data
+        persistentVolumeClain:
+          claimName: data
