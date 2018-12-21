@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: test-ubuntu
+spec:
+  selector:
+    app: testpod
+    # the service need to move traffic to the pods, and I need to have a way to select all the pods.
+   # and we find them with labels and we need to conectem to the ports, and we have an array of ports
+  ports:
+    - port: 8080
+    # type: NodePort
+    #There are 3 types of services, 1-cluster(default), 2-NodePort(We can access the service directly using random port,
+    # and located by the cubernetes on the host) and 3-LoadBalancer.
